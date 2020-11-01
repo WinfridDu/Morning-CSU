@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.csuylg.modules.signin.mapper.SignInMapper">
+
+    <resultMap type="SignInRecord" id="SignInRecordResult">
+        <result property="recordId"     column="record_id" />
+        <result property="userId"    column="user_id"    />
+        <result property="month"    column="month"    />
+        <result property="counts"    column="counts"    />
+        <result property="milliseconds"    column="milliseconds"    />
+        <result property="continuousCounts"    column="continuous_counts"    />
+        <result property="recordBits"    column="record_bits"    />
+    </resultMap>
+
+    <resultMap type="SignInRank" id="SignInRankResult">
+        <result property="userId"    column="user_id"    />
+        <result property="nickName"    column="nick_name"    />
+        <result property="avatarUrl"    column="avatar"    />
+        <result property="currentCounts"    column="counts"    />
+        <result property="continuousCounts"    column="continuous_counts"    />
+    </resultMap>
+
+    <resultMap type="Signer" id="SignerResult">
+        <result property="nickName"    column="nick_name"    />
+        <result property="avatarUrl"    column="avatar"    />
+        <result property="counts"    column="counts"    />
+        <result property="totalCounts"    column="total_counts"    />
+        <result property="milliseconds"    column="milliseconds"    />
+    </resultMap>
+
+    <select id="selectSignInRank" parameterType="String" resultMap="SignInRankResult">
+        select s.user_id, u.nick_name, u.avatar, s.counts, s.continuous_counts
+        from sign_in_record s inner join user u on s.month = #{month} and s.user_id = u.user_id
+        order by s.counts desc, s.milliseconds asc
+    </select>
+
+    <select id="selectList" parameterType="String" resultMap="SignerResult">
+        select s.counts, s.milliseconds, u.avatar, u.nick_name, u.total_counts
+        from sign_in_record s INNER JOIN user u on s.user_id = u.user_id and s.month = #{month}
+        order by s.counts desc, s.milliseconds asc
+    </select>
+
+</mapper>

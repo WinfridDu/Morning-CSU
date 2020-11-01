@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.csuylg.modules.media.mapper.MediaFileMapper">
+
+    <resultMap type="MediaFile" id="MediaFileResult">
+        <result property="mediaId"    column="media_id"    />
+        <result property="mediaTitle"    column="media_title"    />
+        <result property="mediaUrl"    column="media_url"    />
+        <result property="mediaType"    column="media_type"    />
+        <result property="introduction"    column="introduction"    />
+        <result property="duration"    column="duration"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="status"    column="status"    />
+    </resultMap>
+
+    <resultMap type="MediaResponse" id="MediaResponseResult">
+        <result property="mediaId"    column="media_id"    />
+        <result property="name"    column="media_title"    />
+        <result property="media"    column="media_url"    />
+        <result property="type"    column="media_type"    />
+        <result property="duration"    column="duration"    />
+    </resultMap>
+
+    <sql id="selectMediaVo">
+        select media_id, media_title, media_url, duration, media_type from media_file
+    </sql>
+
+    <select id="selectMediaList" parameterType="MediaFile" resultMap="MediaResponseResult">
+        <include refid="selectMediaVo"/>
+        <where>
+            <if test="status != null and status != ''">
+                AND status = #{status}
+            </if>
+            <if test="mediaType != null and mediaType != ''">
+                AND media_type = #{mediaType}
+            </if>
+        </where>
+        order by media_id desc
+    </select>
+
+</mapper>

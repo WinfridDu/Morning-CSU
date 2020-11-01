@@ -1,0 +1,55 @@
+# 项目相关配置
+morning:
+  # 文件路径 示例（ Windows配置D:/Morning-CSU/upload，Linux配置 /home/Morning-CSU/upload）
+  profile: /home/Morning-CSU/upload
+
+# 开发环境配置
+server:
+  # 服务器的HTTP端口，默认为8080
+  port: 8081
+  servlet:
+    # 应用的访问路径
+    context-path: /morning_csu
+
+# Spring配置
+spring:
+  # 文件上传
+  servlet:
+    multipart:
+      # 上传单个文件最大值
+      max-file-size: 10MB
+      # 上传多个文件最大值
+      max-request-size: 20MB
+  # 数据源配置
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/morning_csu2?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&serverTimezone=GMT%2B8
+    username: root
+    password: ylgwechat2018
+  # json配置
+  jackson:
+    # 时区配置
+    time-zone: GMT+8
+
+# MyBatis配置
+mybatis:
+  # 搜索指定包别名
+  typeAliasesPackage: com.csuylg.modules.**.domain, com.csuylg.modules.**.dto
+  # 配置mapper的扫描，找到所有的mapper.xml映射文件
+  mapperLocations: classpath*:mybatis/**/*Mapper.xml
+
+# 微信相关配置
+weixin:
+  # 小程序 appId
+  appid: wx91a7fd12102e9c23
+  # 小程序 appSecret
+  secret: b4f1ac2263dbd7674beb1eb8bd07aa23
+  # 授权类型，此处只需填写 authorization_code
+  grantType: authorization_code
+
+# 日志配置
+logging:
+  level:
+    com.csuylg: debug
+    org.springframework: warn

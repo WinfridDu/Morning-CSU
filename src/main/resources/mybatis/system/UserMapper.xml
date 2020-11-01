@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.csuylg.modules.system.mapper.UserMapper">
+
+    <resultMap type="User" id="UserResult">
+        <result property="userId"    column="user_id"    />
+        <result property="openid"    column="openid"    />
+        <result property="nickName"    column="nick_name"    />
+        <result property="avatar"    column="avatar"    />
+        <result property="lastSignInDate"    column="last_sign_in_date"    />
+        <result property="totalCounts"    column="total_counts"    />
+        <result property="totalContinuousCounts"    column="total_continuous_counts"    />
+        <result property="noticeRead"    column="notice_read"    />
+    </resultMap>
+
+</mapper>

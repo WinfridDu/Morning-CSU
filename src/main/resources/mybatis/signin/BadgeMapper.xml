@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.csuylg.modules.signin.mapper.BadgeMapper">
+
+    <resultMap type="Badge" id="BadgeResult">
+        <result property="userId"    column="user_id"    />
+        <result property="days7Badge"    column="days7_badge"    />
+        <result property="days21Badge"    column="days21_badge"    />
+        <result property="days28Badge"    column="days28_badge"    />
+        <result property="days60Badge"    column="days60_badge"    />
+        <result property="days90Badge"    column="days90_badge"    />
+        <result property="days100Badge"    column="days100_badge"    />
+        <result property="days120Badge"    column="days120_badge"    />
+        <result property="days150Badge"    column="days150_badge"    />
+        <result property="days180Badge"    column="days180_badge"    />
+        <result property="days210Badge"    column="days210_badge"    />
+        <result property="days240Badge"    column="days240_badge"    />
+        <result property="days270Badge"    column="days270_badge"    />
+        <result property="days300Badge"    column="days300_badge"    />
+        <result property="days330Badge"    column="days330_badge"    />
+        <result property="days365Badge"    column="days365_badge"    />
+        <result property="activityBadge"    column="activity_badge"    />
+    </resultMap>
+
+    <sql id="selectBadgeVo">
+        select days7_badge, days21_badge, days28_badge, days60_badge, days90_badge,
+        days100_badge, days120_badge, days150_badge, days180_badge, days210_badge,
+        days240_badge, days270_badge, days300_badge, days330_badge, days365_badge,
+        activity_badge from badge
+    </sql>
+
+    <select id="selectBadge" parameterType="String" resultMap="BadgeResult">
+        <include refid="selectBadgeVo"/>
+         b INNER JOIN user u on b.user_id = u.user_id and u.openid = #{openid}
+    </select>
+
+</mapper>
