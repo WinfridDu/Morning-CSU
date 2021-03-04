@@ -26,7 +26,7 @@ spring:
     driverClassName: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/morning_csu2?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&serverTimezone=GMT%2B8
     username: root
-    password: ylgwechat2018
+    password: 
   # json配置
   jackson:
     # 时区配置
@@ -42,9 +42,9 @@ mybatis:
 # 微信相关配置
 weixin:
   # 小程序 appId
-  appid: wx91a7fd12102e9c23
+  appid: 
   # 小程序 appSecret
-  secret: b4f1ac2263dbd7674beb1eb8bd07aa23
+  secret: 
   # 授权类型，此处只需填写 authorization_code
   grantType: authorization_code
 
